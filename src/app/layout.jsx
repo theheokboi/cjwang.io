@@ -3,6 +3,7 @@ import { Banner, Head } from "nextra/components";
 import { getPageMap } from "nextra/page-map";
 import "./globals.css";
 import "nextra-theme-docs/style.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   // Define your metadata here

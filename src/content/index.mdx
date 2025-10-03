@@ -1,0 +1,57 @@
+import Image from "next/image";
+import { Steps } from 'nextra/components'
+import { NewsItem } from "@/app/components/newsItem";   
+
+# Caleb J. Wang 
+
+## About me 
+<div className="my-4 max-w-[8rem] sm:float-left sm:mr-8 sm:mb-4">
+  <Image
+    className="h-auto w-full rounded-xl shadow-lg shadow-gray-500/70 transition-shadow duration-300 hover:shadow-xl hover:shadow-gray-500/90 glide-animation"
+    src="/me/headshot.jpg"
+    width={128}
+    height={128}
+    alt="Caleb's headshot"
+    priority
+  />
+</div>
+
+I'm a fourth year Ph.D. student at [Northwestern University](https://www.northwestern.edu/)'s Computer Science department and [AquaLab](https://aqualab.cs.northwestern.edu/), 
+where I work with Prof. [Fabián E. Bustamante](https://users.cs.northwestern.edu/~fabianb/). 
+Together, we research on Internet Measurement, network Infrastructure, and Internet Resilience, where we try to understand in today's world why networks fail, how they respond to failures, and what to do to make the Internet more resilient. 
+
+Before my Ph.D., I got my Bachelor's degree in Electrical Engineering and Master's degree in Communication Engineering, both from [National Taiwan University](https://www.ntu.edu.tw/english/).  I worked briefly as a customer engineer at Microsoft, Taiwan before joining Northwestern.
+You can check out my full cv [here](/pdf/cv.pdf).  
+
+In an alternate universe, I traded research papers for 
+[espresso machines](https://lamarzoccousa.com/home-products/espresso-machines/linea-mini/), 
+[guitar strings](https://www.ibanez.com/na/products/detail/rg8527_00_06.html), and 
+befriending [wombats](https://en.wikipedia.org/wiki/Common_wombat).  
+
+<div className="clear-both" />
+
+## Recent News  
+
+<Steps>
+    <NewsItem date="Aug. 2025"> 
+        Our [short paper](https://dl.acm.org/doi/abs/10.1145/3718958.3750512) on submarine cable mapping has been accepted to SIGCOMM '25! 
+        I'd love to meet up in Coimbra, Portugal 🇵🇹 and grab a coffee ☕️! 
+    </NewsItem>
+
+    <NewsItem date="Feb. 2025"> 
+        Thrilled to be doing another internship with [Cisco ThousandEyes](https://www.thousandeyes.com/) ! 
+        See you in San Francisco this summer ! 
+    </NewsItem>
+
+    <NewsItem date="Dec. 2024"> 
+        My [research blog](https://medium.com/thousandeyes-engineering/internship-series-transforming-ip-geolocation-to-boost-network-insights-491b94904830) on improving IP geolocation during my internship at ThousandEyes is now live!
+    </NewsItem>
+
+    <NewsItem date="Aug. 2024"> 
+        Back to back research internship at [IIJ Research](https://www.iijlab.net/en/), Tokyo ! 
+    </NewsItem>
+
+    <NewsItem date="May. 2024"> 
+        Started my internship at [Cisco ThousandEyes](https://www.thousandeyes.com/) !
+    </NewsItem>
+</Steps>

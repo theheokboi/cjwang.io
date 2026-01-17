@@ -1,3 +1,4 @@
+import Image from 'next/image';
 
 interface ExperienceCardProps {
   logo: string;
@@ -12,13 +13,18 @@ export function ExperienceCard({
   position,
   years,
 }: ExperienceCardProps) {
+  // Ensure logo path starts with / for Next.js Image component
+  const imageSrc = logo.startsWith('/') ? logo : `/${logo}`;
+
   return (
     <article className="experience-card" aria-label={`Experience at ${company}`}>
       <div className="experience-entry">
         <div className="experience-logo" aria-hidden="true">
-          <img
-            src={logo}
+          <Image
+            src={imageSrc}
             alt={`${company} logo`}
+            width={80}
+            height={80}
             className="experience-logo__image"
             loading="lazy"
           />

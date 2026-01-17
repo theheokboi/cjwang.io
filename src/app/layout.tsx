@@ -12,8 +12,10 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import type { NextraPageMapItem } from '@/types/nextra';
 import Script from 'next/script';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: 'Caleb J. Wang',
     template: '%s | Caleb J. Wang',
@@ -171,7 +173,11 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           {children}
           <SpeedInsights />
           <Analytics mode="production" />
-          {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
+          {process.env.NEXT_PUBLIC_GA_ID && (
+            <Suspense fallback={null}>
+              <GoogleAnalytics />
+            </Suspense>
+          )}
         </Layout>
       </body>
     </html>

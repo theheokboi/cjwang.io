@@ -6,16 +6,16 @@ interface NewsItemProps {
 }
 
 export function NewsItem({ date, children }: NewsItemProps) {
-  const badgeClass = `news-badge glide-animation`;
-
   return (
     <article className="news-item">
       {date ? (
-        <time className={badgeClass} dateTime={date} aria-label={`Date: ${date}`}>
+        <time className="news-badge" dateTime={date} aria-label={`Date: ${date}`}>
           {date}
         </time>
       ) : null}
-      <div className="basis-3/4 text-left align-middle">{children}</div>
+      <div className="basis-3/4 text-left">
+        {children}
+      </div>
     </article>
   );
 }

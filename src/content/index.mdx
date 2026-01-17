@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Steps } from 'nextra/components'
 import { NewsItem } from "@/components/newsItem";   
 
 # Caleb J. Wang 
@@ -33,7 +32,12 @@ befriending [wombats](https://en.wikipedia.org/wiki/Common_wombat).
 
 ## Recent News  
 
-<Steps>
+<div className="space-y-4">
+    <NewsItem date="Jan. 2026"> 
+        Excited to be joining [Cloudflare Research](https://research.cloudflare.com) as an Research Engineer Intern this summer in Austin, Texas. 
+        
+    </NewsItem>
+
     <NewsItem date="Aug. 2025"> 
         Our [short paper](https://dl.acm.org/doi/abs/10.1145/3718958.3750512) on submarine cable mapping has been accepted to SIGCOMM '25! 
         I'd love to meet up in Coimbra, Portugal 🇵🇹 and grab a coffee ☕️! 
@@ -55,4 +59,4 @@ befriending [wombats](https://en.wikipedia.org/wiki/Common_wombat).
     <NewsItem date="May. 2024"> 
         Started my internship at [Cisco ThousandEyes](https://www.thousandeyes.com/) !
     </NewsItem>
-</Steps>
+</div>

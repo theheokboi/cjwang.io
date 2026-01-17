@@ -1,9 +1,14 @@
-import { Steps } from 'nextra/components'
 import { ExperienceCard } from "@/components/expCard" 
 
 ## Work Experience 
 
-<Steps>
+<div className="space-y-4">
+    <ExperienceCard 
+        logo="external_logos/cloudflare.png" 
+        company="Cloudflare"
+        position="Research Engineer Intern" 
+        years="May. 2025 - Aug. 2025 (expected)" 
+    />
     <ExperienceCard 
         logo="external_logos/thousandeyes.png"
         company="Cisco ThousandEyes"
@@ -44,11 +49,11 @@ import { ExperienceCard } from "@/components/expCard"
         years="2018"
     />
 
-</Steps>
+</div>
 
 ## Education 
 
-<Steps>
+<div className="space-y-4">
     <ExperienceCard 
         logo="external_logos/nu.png"
         company="Northwestern University"
@@ -71,4 +76,4 @@ import { ExperienceCard } from "@/components/expCard"
         years="2015-2020"
     />
 
-</Steps>
+</div>

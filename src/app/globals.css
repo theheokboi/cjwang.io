@@ -2,87 +2,69 @@
 
 @layer base {
   :root {
-    --news-badge-bg: #3c6be1;
-    --news-badge-text: #ffffff;
-    --news-badge-shadow: rgba(107, 114, 128, 0.7);
-    --news-badge-shadow-hover: rgba(107, 114, 128, 0.9);
-
-    --publication-badge-bg: #3c6be1;
-    --publication-badge-text: #ffffff;
-    --publication-badge-shadow: rgba(107, 114, 128, 0.7);
-    --publication-badge-shadow-hover: rgba(107, 114, 128, 0.9);
-
-    --publication-link-border: #3c6be1;
-    --publication-link-text: #3c6be1;
-    --publication-link-bg-hover: #3c6be1;
-    --publication-link-text-hover: #ffffff;
-
     --logo-color: #0f172a;
   }
 
   .dark {
-    --news-badge-bg: #5ea2fc;
-    --news-badge-text: #ffffff;
-    --news-badge-shadow: rgba(107, 114, 128, 0.7);
-    --news-badge-shadow-hover: rgba(107, 114, 128, 0.9);
-
-    --publication-badge-bg: #5ea2fc;
-    --publication-badge-text: #ffffff;
-    --publication-badge-shadow: rgba(107, 114, 128, 0.7);
-    --publication-badge-shadow-hover: rgba(107, 114, 128, 0.9);
-
-    --publication-link-border: #5ea2fc;
-    --publication-link-text: #5ea2fc;
-    --publication-link-bg-hover: #5ea2fc;
-    --publication-link-text-hover: #d1d5db;
-
     --logo-color: #f1f5f9;
   }
 }
 
 @layer components {
   .news-item {
-    @apply mt-2 mb-2 flex flex-row gap-4 items-start;
+    @apply flex flex-row gap-4 items-center;
     min-height: 3rem;
   }
 
-  .news-badge {
-    @apply font-bold text-sm px-4 py-0.5 rounded mr-4 mt-1 transition-shadow duration-300;
-    color: var(--news-badge-text);
-    background-color: var(--news-badge-bg);
-    box-shadow: 0 10px 25px var(--news-badge-shadow);
+  /* Ensure links inside news items are visible and styled */
+  .news-item a {
+    @apply text-blue-600 underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300;
+    text-decoration: underline;
   }
 
-  .news-badge:hover {
-    box-shadow: 0 14px 30px var(--news-badge-shadow-hover);
+  .news-badge {
+    @apply font-semibold text-xs px-2.5 py-1 rounded-md mr-4 bg-blue-100 text-blue-700 transition-colors duration-200;
+  }
+
+  .dark .news-badge {
+    background-color: rgb(30 58 138 / 0.3);
+    color: rgb(96 165 250);
+  }
+
+  /* Fix first item offset in timeline containers - increased specificity */
+  .space-y-4 > .news-item:first-child,
+  .space-y-4 > .publication-entry:first-child,
+  .space-y-4 > .experience-card:first-child {
+    margin-top: 1rem !important; /* 1.5rem = mt-6, using !important to override Nextra styles */
   }
 
   .publication-entry {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
-    @apply mt-12 mb-12 gap-4;
+    @apply mb-4 gap-4;
   }
 
   .publication-badge {
-    @apply font-bold text-sm px-4 py-0.5 rounded transition-shadow duration-300;
-    color: var(--publication-badge-text);
-    background-color: var(--publication-badge-bg);
-    box-shadow: 0 10px 25px var(--publication-badge-shadow);
+    @apply font-semibold text-xs px-2.5 py-1 rounded-md bg-blue-100 text-blue-700 transition-colors duration-200;
   }
 
-  .publication-badge:hover {
-    box-shadow: 0 14px 30px var(--publication-badge-shadow-hover);
+  .dark .publication-badge {
+    background-color: rgb(30 58 138 / 0.3);
+    color: rgb(96 165 250);
   }
 
   .publication-link {
-    @apply inline-flex items-center text-sm justify-center px-4 py-0.5 rounded border border-2 no-underline transition-colors duration-300;
-    border-color: var(--publication-link-border);
-    color: var(--publication-link-text);
+    @apply inline-flex items-center text-sm justify-center px-3 py-1.5 rounded-md border no-underline border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-colors duration-200;
   }
 
-  .publication-link:hover {
-    background-color: var(--publication-link-bg-hover);
-    color: var(--publication-link-text-hover);
+  .dark .publication-link {
+    border-color: rgb(75 85 99);
+    color: rgb(209 213 219);
+  }
+
+  .dark .publication-link:hover {
+    background-color: rgb(31 41 55);
+    border-color: rgb(107 114 128);
   }
 
   .experience-entry {
@@ -92,11 +74,11 @@
   }
 
   .experience-card {
-    @apply mb-6 flex h-full flex-col rounded-xl p-4;
+    @apply flex h-full flex-col;
   }
 
   .experience-logo {
-    @apply flex items-start justify-center;
+    @apply flex items-center justify-center;
   }
 
   .experience-logo__image {
@@ -172,7 +154,7 @@
       rgba(0, 0, 0, 0.2) 50%,
       #000 75%
     );
-    -webkit-mask-position: 0;
+    -webkit-mask-position: 25%;
     -webkit-mask-size: 400%;
     mask-image: linear-gradient(
       60deg,
@@ -180,13 +162,13 @@
       rgba(0, 0, 0, 0.2) 50%,
       #000 75%
     );
-    mask-position: 0;
+    mask-position: 0%;
     mask-size: 400%;
     transition: mask-position 1s ease, -webkit-mask-position 1s ease;
   }
 
   .glide-animation:hover {
-    -webkit-mask-position: 100%;
-    mask-position: 100%;
+    -webkit-mask-position: 125%;
+    mask-position: 125%;
   }
 }

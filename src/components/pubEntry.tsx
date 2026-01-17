@@ -5,9 +5,8 @@ interface PublicationLinkProps {
 
 function ConferenceBadge({ conference }: { conference?: string }) {
   if (!conference) return null;
-  const badgeClass = `publication-badge glide-animation`;
   return (
-    <div className={badgeClass} role="text" aria-label={`Conference: ${conference}`}>
+    <div className="publication-badge" role="text" aria-label={`Conference: ${conference}`}>
       {conference}
     </div>
   );
@@ -20,7 +19,7 @@ function PublicationLink({ text, link }: PublicationLinkProps) {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="publication-link glide-animation"
+      className="publication-link"
       aria-label={`${text} (opens in new tab)`}
     >
       {text}
@@ -52,7 +51,7 @@ export function PublicationEntry({
 }: PublicationEntryProps) {
   return (
     <article className="publication-entry" aria-labelledby={`pub-title-${title.slice(0, 10).replace(/\s+/g, '-')}`}>
-      <div className="flex items-start mt-0.5">
+      <div className="flex items-center">
         <ConferenceBadge conference={conference} />
       </div>
 

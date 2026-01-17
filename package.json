@@ -11,6 +11,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,mdx}\""
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.2.0",
     "classnames": "^2.5.1",
     "next": "15.5.9",

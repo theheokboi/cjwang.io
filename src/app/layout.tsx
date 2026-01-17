@@ -4,11 +4,14 @@ import { getPageMap } from 'nextra/page-map';
 import './globals.css';
 import 'nextra-theme-docs/style.css';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import { Logo } from '@/components/Logo';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { siteConfig } from '@/config/site';
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import type { NextraPageMapItem } from '@/types/nextra';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: {
@@ -65,6 +68,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: siteConfig.url,
+  },
   verification: {
     // Add verification codes if needed
   },
@@ -106,6 +112,52 @@ export default async function RootLayout({ children }: RootLayoutProps) {
       // ... Your additional head options
       >
         {/* Your additional tags should be passed as `children` of `<Head>` element */}
+        {/* Google Analytics GA4 */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+                  page_path: window.location.pathname
+                });
+              `}
+            </Script>
+          </>
+        )}
+        {/* Structured Data - Person/Profile Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: siteConfig.author.name,
+              email: siteConfig.author.email,
+              url: siteConfig.url,
+              jobTitle: 'Ph.D. Student',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Northwestern University',
+                department: 'Computer Science',
+              },
+              alumniOf: {
+                '@type': 'Organization',
+                name: 'Northwestern University',
+              },
+              sameAs: [
+                siteConfig.social.linkedin,
+                siteConfig.social.github,
+              ],
+            }),
+          }}
+        />
       </Head>
       <body>
         <Layout
@@ -118,6 +170,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         >
           {children}
           <SpeedInsights />
+          <Analytics mode="production" />
+          {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
         </Layout>
       </body>
     </html>

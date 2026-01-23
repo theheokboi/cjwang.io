@@ -12,12 +12,26 @@ export function useMDXComponents(components?: MDXComponents): MDXComponents {
   return {
     ...themeComponents,
     ...components,
-    a: ({ className = '', ...props }: ComponentProps<'a'>) => {
+    a: ({ className = '', href, ...props }: ComponentProps<'a'>) => {
       const LinkComponent = customLink ?? BaseLink;
       const combined = className
         ? `${className} glide-animation`
         : 'glide-animation';
-      return <LinkComponent {...props} className={combined} />;
+      
+      // Open CV PDF link in a new tab
+      if (href === '/pdf/cv.pdf') {
+        return (
+          <LinkComponent
+            {...props}
+            href={href}
+            className={combined}
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+        );
+      }
+      
+      return <LinkComponent {...props} href={href} className={combined} />;
     },
   };
 }

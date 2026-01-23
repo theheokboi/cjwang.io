@@ -14,8 +14,8 @@ export async function generateMetadata(
   props: GenerateMetadataProps
 ): Promise<Metadata> {
   const params = await props.params;
-  // Skip Vercel internal routes and other non-MDX routes
-  if (params.mdxPath && params.mdxPath[0] === '_vercel') {
+  // Skip Vercel internal routes, static file paths, and other non-MDX routes
+  if (params.mdxPath && (params.mdxPath[0] === '_vercel' || params.mdxPath[0] === 'pdf')) {
     return {};
   }
   try {
@@ -43,8 +43,8 @@ interface PageProps {
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
-  // Skip Vercel internal routes and other non-MDX routes
-  if (params.mdxPath && params.mdxPath[0] === '_vercel') {
+  // Skip Vercel internal routes, static file paths, and other non-MDX routes
+  if (params.mdxPath && (params.mdxPath[0] === '_vercel' || params.mdxPath[0] === 'pdf')) {
     return null;
   }
   try {

@@ -14,8 +14,17 @@ export async function generateMetadata(
   props: GenerateMetadataProps
 ): Promise<Metadata> {
   const params = await props.params;
-  const { metadata } = await importPage(params.mdxPath);
-  return metadata;
+  // Skip Vercel internal routes and other non-MDX routes
+  if (params.mdxPath && params.mdxPath[0] === '_vercel') {
+    return {};
+  }
+  try {
+    const { metadata } = await importPage(params.mdxPath);
+    return metadata;
+  } catch (error) {
+    // Return empty metadata for routes that can't be loaded
+    return {};
+  }
 }
 
 interface WrapperProps {
@@ -34,6 +43,10 @@ interface PageProps {
 
 export default async function Page(props: PageProps) {
   const params = await props.params;
+  // Skip Vercel internal routes and other non-MDX routes
+  if (params.mdxPath && params.mdxPath[0] === '_vercel') {
+    return null;
+  }
   try {
     const pageResult: NextraPageResult = await importPage(params.mdxPath);
     const { default: MDXContent, toc, metadata, sourceCode } = pageResult;

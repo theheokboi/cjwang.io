@@ -24,6 +24,10 @@ const meta: MetaConfig = {
     title: 'contact',
     type: 'page',
   },
+  cv: {
+    title: 'cv',
+    type: 'page',
+  },
 } as const;
 
 export default meta;
